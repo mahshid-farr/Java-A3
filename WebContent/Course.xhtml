@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!-- index.xhtml -->
+<!-- Validating user input -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core">
+   <h:head>
+      <title>Course Selection</title>
+      <h:outputStylesheet name="style.css" library="css"/>
+   </h:head>
+   <h:body>
+      <h:form>
+         <h1>Course Selection</h1>
+         
+         <h:panelGrid columns="2">
+         
+         <h:outputText value="Semester:"/>
+         <h:selectOneMenu value="#{editcourse.sem}">
+                
+				<f:selectItem itemLabel="Fall 2020" />
+				<f:selectItem itemLabel="Winter 2021" /> 
+				
+			</h:selectOneMenu>
+            
+             <h:outputText value="Course ID:"/>
+         <h:selectOneMenu value="#{editcourse.CId}">
+                
+				<f:selectItem itemLabel="CJV805: Database Connectivity Using Java" />
+				<f:selectItem itemLabel="OPS700: Operating System" />
+				<f:selectItem itemLabel="DBD800: Accessing Big Data" />
+				<f:selectItem itemLabel="WTP100: Work Term Preparation" />
+			</h:selectOneMenu>  
+            
+            <h:outputText value="Section:"/>
+         <h:selectOneMenu value="#{editcourse.section}">
+                
+				<f:selectItem itemLabel="NAA" />
+				<f:selectItem itemLabel="NBB" />
+			</h:selectOneMenu>
+            
+            
+         </h:panelGrid>
+         <h:commandButton value="Select" action="#{editcourse.addCourse}">
+         
+            <f:param name="student_ID" value="#{takecourse.SId}" />
+         </h:commandButton>
+         
+         
+      </h:form>
+            <h:outputLink value="index.xhtml">Return to Main Page</h:outputLink>
+   </h:body>
+</html>
+

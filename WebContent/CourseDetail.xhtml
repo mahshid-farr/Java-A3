@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- Displays an h:dataTable of the addresses in the address book -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+	<title>Courses List</title>
+
+</h:head>
+<h:body>
+	<center>
+		<h2>
+			<h:outputText value="Couses Details " />
+		</h2>
+	</center>
+	<h:form id="schoolForm">
+		<h:dataTable id="schoolTable" value="#{students.getCourses()}" var="s">
+			
+			
+			<h:column>
+				<f:facet name="header">Course_Name and ID</f:facet>
+				<h:outputText value="#{s.CId}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Semester</f:facet>
+				<h:outputText value="#{s.sem}"/>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Section</f:facet>
+				<h:outputText value="#{s.section}" />
+			</h:column>
+			
+
+			<h:column>
+			<h:commandButton value="Drop" action="#{students.deleteCourse}">
+				<f:param name="action5" value="#{school.SId}" />
+			</h:commandButton>
+			</h:column>
+			
+			
+	
+		</h:dataTable>
+
+	</h:form>
+	<h:outputLink value="index.xhtml">Return to Main Page</h:outputLink>
+</h:body>
+</html>

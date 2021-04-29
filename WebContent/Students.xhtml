@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- Displays an h:dataTable of the addresses in the address book -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+
+	<title>Students List</title>
+
+</h:head>
+<h:body>
+	<center>
+		<h2>
+			<h:outputText value="Students Details " />
+		</h2>
+	</center>
+	<h:form id="schoolForm">
+		<h:dataTable id="schoolTable" value="#{students.getStudents()}"
+			var="school">
+			<h:column>
+				<f:facet name="header">Student ID</f:facet>
+				<h:outputText value="#{school.SId}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">First Name</f:facet>
+				<h:outputText value="#{school.fname}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Last Name</f:facet>
+				<h:outputText value="#{school.lname}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Student Email</f:facet>
+				<h:outputText value="#{school.email}" />
+			</h:column>
+			<h:column>
+				<h:commandButton value="Enroll" >
+				<f:param name="action" value="#{school.SId}" />
+				</h:commandButton>
+			</h:column>
+             <h:column>
+			<h:commandButton value="Edit" action="#{students.editStudent}">
+				<f:param name="action" value="#{school.SId}" />
+			</h:commandButton>
+			</h:column>
+			
+			 <h:column>
+			<h:commandButton value="Delete" action="#{students.deleteStudent}">
+				<f:param name="action" value="#{school.SId}" />
+			</h:commandButton>
+			</h:column>
+			
+			<h:column>
+			<h:commandButton value="View Enrolled Courses" action="CourseDetail.xhtml">
+				<f:param name="action4" value="#{school.SId}" />
+			</h:commandButton>
+			</h:column>
+			
+			<f:facet name="footer">
+				<h:outputText
+					value="Total Student : #{students.getStudents().size()}" />
+			</f:facet>
+		</h:dataTable>
+
+	</h:form>
+</h:body>
+</html>

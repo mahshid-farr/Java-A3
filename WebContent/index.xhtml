@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!-- index.xhtml -->
+<!-- Validating user input -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Seneca Registration Online Form</title>
+	<h:outputStylesheet name="style.css" library="css" />
+</h:head>
+<h:body>
+	<h:form>
+		<h1>Seneca Registration Online Form</h1>
+		<p>All fields are required and must contain valid information</p>
+		<h:panelGrid columns="3">
+
+			<h:outputText value="Student ID:" />
+			<h:inputText value="#{students.SId}" id="SIdInputText" required="true"
+				requiredMessage="Please enter Student ID" 
+				validatorMessage="Student ID has 9 digit">
+				<f:validateLength size="9" maximum="9" minimum="9" />
+			</h:inputText>
+			<h:message id="IDMessage" for="SIdInputText" styleClass="error"
+				style="color:red" />
+
+			<h:outputText value="First Name:" />
+			<h:inputText value="#{students.fname}" id="FNameInputText" required="true"
+				requiredMessage="Please enter your First name"
+				
+				validatorMessage="Name must be fewer than 30 characters">
+				<f:validateLength maximum="30" />
+			</h:inputText>
+			<h:message id="FnameMessage" for="FNameInputText" styleClass="error"
+				style="color:red" />
+
+			<h:outputText value="Last Name:" />
+			<h:inputText value="#{students.lname}" id="LNameInputText" required="true"
+				requiredMessage="Please enter your Last name"
+				
+				validatorMessage="Name must be fewer than 30 characters">
+				<f:validateLength maximum="30" />
+
+
+
+			</h:inputText>
+			<h:message id="LnameMessage" for="LNameInputText" styleClass="error"
+				style="color:red" />
+
+			<h:outputText value="E-mail:" />
+			<h:inputText value="#{students.email}" id="emailInputText" required="true"
+				requiredMessage="Please enter a valid e-mail address"
+				
+				validatorMessage="Invalid e-mail address format">
+				<f:validateRegex
+					pattern="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+			</h:inputText>
+			<h:message id="emailMessage" for="emailInputText" styleClass="error"
+				style="color:red" />
+
+		</h:panelGrid>
+		<h:commandButton value="Create New Student"
+		                 action="#{students.AddStudent}">
+		<f:ajax
+				execute="SIdInputText FNameInputText LNameInputText emailInputText "
+				render="IDMessage FnameMessage LnameMessage emailMessage  resultOutputText" />
+			
+			
+		</h:commandButton>
+
+
+		<h:button value="View/Edit Student" outcome="Students.xhtml">
+
+		</h:button>
+		<h:outputText id="resultOutputText" escape="false"
+			value="#{studentBean.result}" />
+	</h:form>
+</h:body>
+</html>
+
